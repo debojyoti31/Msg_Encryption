@@ -64,7 +64,7 @@ with st.container():
         option = st.radio('**Select Operation Type**',('Encode', 'Decode'))
         
         if option == 'Encode':
-            input_text = st.text_area('**Text to detect**', '''Shhh! don't read it!''')
+            input_text = st.text_area('**Text to Encode**', '''Shhh! don't read it!''')
             input_text += ' -- Created By DM31'
             
             matrix_text= text_to_matrix(input_text)

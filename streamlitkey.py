@@ -17,7 +17,7 @@ st.set_page_config(page_title="Key", page_icon=":key:")
 
 st.title('Encryption Key WebApp')
 st.write('---')
-st.write("[Use WebApp for Msg Encryption](https://www.unicef.org/end-violence/how-to-stop-cyberbullying)")
+st.write("[Use WebApp for Msg Encryption](https://debojyoti31-simple-msg-encryption.streamlit.app/)")
 
 with st.container():
 

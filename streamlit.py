@@ -97,7 +97,7 @@ with st.container():
         if option == 'Decode':
 
           uploaded_msg = st.file_uploader("Upload Encoded Msg Here")
-          uploaded_key = st.file_uploader("Upload Encoded key Here")
+          uploaded_key = st.file_uploader("Upload the key Here")
           if st.button('Decode'):
             key = np.genfromtxt(uploaded_key)
             msg = np.genfromtxt(uploaded_msg)

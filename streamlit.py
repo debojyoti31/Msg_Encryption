@@ -64,13 +64,14 @@ with st.container():
         option = st.radio('**Select Operation Type**',('Encode', 'Decode'))
         
         if option == 'Encode':
-            input_text = st.text_area('**Text to detect**', '''shhh! don't read it!''')
+            input_text = st.text_area('**Text to detect**', '''Shhh! don't read it!''')
+            input_text += ' -- Created By DM31'
             
             matrix_text= text_to_matrix(input_text)
             
             if st.button('Check Key Shape'):
               st.write('Key shape should be',matrix_text.shape[1])
-            st.write("[Use WebApp to generate Key](https://www.unicef.org/end-violence/how-to-stop-cyberbullying)")
+            st.write("[Use WebApp to Generate Key](https://debojyoti31-msg-encryption-key.streamlit.app/)")
             uploaded_key = st.file_uploader("Upload Key Here")  
             
             if st.button('Encode'):

@@ -82,25 +82,27 @@ with st.container():
           if st.button('Check Key Shape'):
             st.write('Key shape should be',matrix_text.shape[1])
           st.write("[Use WebApp to Generate Key](https://debojyoti31-msg-encryption-key.streamlit.app/)")
-          uploaded_key = st.file_uploader("Upload Key Here")  
-            
-          if st.button('Encode'):
-            key = np.genfromtxt(uploaded_key)
+          uploaded_key = st.file_uploader("Upload Key Here")
 
-            with st.spinner('encoding....'):  
-              try:   
-                encoded_msg = encode(matrix_text, key)
-              except:
-                st.write('Error! Check Key Shape')
-              
-            with io.BytesIO() as buffer:
-                np.savetxt(buffer, encoded_msg)
-                st.download_button(
-                label="Download encoded msg as CSV",
-                data = buffer, # Download buffer
-                file_name = 'encoded_msg.csv',
-                mime='text/csv'
-                    ) 
+          if (uploaded_key) is not None:  
+            
+            if st.button('Encode'):
+              key = np.genfromtxt(uploaded_key)
+
+              with st.spinner('encoding....'):  
+                try:   
+                  encoded_msg = encode(matrix_text, key)
+                except:
+                  st.write('Error! Check Key Shape')
+                
+              with io.BytesIO() as buffer:
+                  np.savetxt(buffer, encoded_msg)
+                  st.download_button(
+                  label="Download encoded msg as CSV",
+                  data = buffer, # Download buffer
+                  file_name = 'encoded_msg.csv',
+                  mime='text/csv'
+                      ) 
         
 
 

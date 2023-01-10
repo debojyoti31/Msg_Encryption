@@ -2,6 +2,7 @@ import numpy as np
 import streamlit as st
 import io
 from io import StringIO
+from datetime import datetime
 
 def text_to_matrix(text):
   # Split the text into a list of words
@@ -75,7 +76,7 @@ with st.container():
             if uploaded_text is not None:
               input_text = StringIO(uploaded_text.getvalue().decode("utf-8")).read()
 
-          input_text += ' -- Created By DM31'
+          input_text += datetime.now().strftime("%d%m%y %H:%M")
             
           matrix_text= text_to_matrix(input_text)
             

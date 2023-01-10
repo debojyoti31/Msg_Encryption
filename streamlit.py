@@ -125,11 +125,13 @@ with st.container():
             mime='text/plane',
             )
             if output_option == 'Show Text':
-              key = np.genfromtxt(uploaded_key)
-              msg = np.genfromtxt(uploaded_msg)
-              try:    
-                decoded = decode(msg, key)
-              except:
-                st.write('Error! Check Key Shape')
-              with st.container():
-                st.write(decoded)
+              if st.button('Decode'):
+                key = np.genfromtxt(uploaded_key)
+                msg = np.genfromtxt(uploaded_msg)
+                try:    
+                  decoded = decode(msg, key)
+                except:
+                  st.write('Error! Check Key Shape')
+                if st.button('Show Text'):  
+                  with st.container():
+                    st.write(decoded)

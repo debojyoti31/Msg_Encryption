@@ -71,7 +71,7 @@ with st.container():
             input_text = st.text_area('**Text to Encode**', '''Shhh! don't read it!''')
           if input_option == 'Upload txt File':
             uploaded_text = st.file_uploader("Upload txt file Here")
-            input_text = np.genfromtxt(uploaded_text)
+            input_text = uploaded_text.read()
 
           input_text += ' -- Created By DM31'
             

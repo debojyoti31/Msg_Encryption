@@ -70,7 +70,7 @@ with st.container():
                 for day in range(1,32):
                     for shape in range(5,51):  
                         all_keys1.append(generate_key(shape, 1, 10))
-                        names1.append(str(day)+'_'+str(shape))
+                        names1.append('d'+str(day)+'_'+'s'+str(shape))
 
                 all_keys = np.array(all_keys1,dtype=object)
                 names = np.array(names1)

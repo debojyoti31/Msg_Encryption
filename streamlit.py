@@ -76,7 +76,7 @@ with st.container():
             if uploaded_text is not None:
               input_text = StringIO(uploaded_text.getvalue().decode("utf-8")).read()
 
-          input_text += datetime.now().strftime("-- %d%m%y %H:%M")
+          input_text += datetime.now().strftime(" -- %d%m%y %H:%M")
             
           matrix_text= text_to_matrix(input_text)
             
@@ -112,6 +112,9 @@ with st.container():
 
             uploaded_msg = st.file_uploader("Upload Encoded Msg Here")
             uploaded_key = st.file_uploader("Upload the key Here")
+
+            if st.button('Check Key Shape'):
+                st.write('Key shape should be',np.genfromtxt(uploaded_msg).shape[1])
 
             if (uploaded_key and uploaded_msg) is not None:
             

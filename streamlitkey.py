@@ -81,5 +81,5 @@ with st.container():
 
                 if st.button('Download ZIP'):
                     buffer = create_zip_from_arrays(all_keys,names)
-                    st.write("all_keys.zip", buffer.getvalue(),  download=True)
+                    st.download_button("Download ZIP", buffer.getvalue())
                     buffer.close()

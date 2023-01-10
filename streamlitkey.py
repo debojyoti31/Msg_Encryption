@@ -62,13 +62,13 @@ with st.container():
                     for i, array in enumerate(all_keys):
                         # Create a BytesIO object to hold the CSV data
                         buffer = io.BytesIO()
-                        np.savetxt(buffer, array)
+                        np.savetxt(buffer, array, delimiter=",")
                         buffer.seek(0)
 
                         # Write the contents of the BytesIO object to the archive
                         archive.writestr(names[i], buffer.getvalue())
                         buffer.close()
-
-            if st.button('Download ZIP'):
-                with open("arrays.zip", "rb") as f:
-                    st.write("arrays.zip", f.read(),  download=True)
+                        
+                if st.button('Download ZIP'):
+                    with open("all_keys.zip", "rb") as f:
+                        st.write("all_keys.zip", f.read(),  download=True)

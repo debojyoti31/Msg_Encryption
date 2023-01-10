@@ -66,7 +66,6 @@ with st.container():
         
         if option == 'Encode':
 
-
           input_option = st.radio('**Select Input Type**',('Write Msg', 'Upload txt File'))
           if input_option == 'Write Msg':
             input_text = st.text_area('**Text to Encode**', '''Shhh! don't read it!''')
@@ -117,9 +116,14 @@ with st.container():
             except:
               st.write('Error! Check Key Shape')
 
-            st.download_button(
+            output_option = st.radio('**Select Output Type**',('Download txt File','Show Text'))
+            if output_option == 'Download txt File':
+              st.download_button(
             label="Download decoded msg as txt",
             data=decoded,
             file_name='decoded_msg.txt',
             mime='text/plane',
             )
+            if output_option == 'Show Text':
+              with st.container():
+                st.write(decoded)

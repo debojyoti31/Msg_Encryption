@@ -59,7 +59,7 @@ with st.container():
                     ) 
 
     if option == 'Generate All Keys of a month':
-        st.write('Generate keys of shape 5 to 50 for 31 dates')
+        st.write('Generate keys of shape 5 to 50 for 31 dates. d7_s14.csv is 14 shape key for day 7.')
 
         if st.button('Generate'):
             with st.spinner('generating....'):

@@ -15,7 +15,23 @@ def create_all_monthly_key():
             np.savetxt(str(day)+"_"+str(shape)+"_"+".csv",generate_key(shape, 1, 10))
 
 
+def create_zip_from_arrays(all_keys,names):
+    # Create a BytesIO object to hold the ZIP data
+    buffer = io.BytesIO()
 
+    # Create a ZIP archive in memory
+    with ZipFile(buffer, "w") as archive:
+        for i, array in enumerate(all_keys):
+            # Create a BytesIO object to hold the CSV data
+            csv_buffer = io.StringIO()
+            np.savetxt(csv_buffer, array, fmt='%d')
+            csv_buffer.seek(0)
+            archive.writestr(names[i]+'.csv', csv_buffer.getvalue())
+            csv_buffer.close()
+
+    # Move the buffer's position back to the beginning
+    buffer.seek(0)
+    return buffer
 
 st.set_page_config(page_title="Key", page_icon=":key:")
 
@@ -43,6 +59,7 @@ with st.container():
                     ) 
 
     if option == 'Generate All Keys of a month':
+        st.write('Generate keys of shape 5 to 50 for 31 dates')
 
         if st.button('Generate'):
             with st.spinner('generating....'):
@@ -58,28 +75,6 @@ with st.container():
                 all_keys = np.array(all_keys1,dtype=object)
                 names = np.array(names1)
                 
-
-
-
-                def create_zip_from_arrays(all_keys,names):
-                    # Create a BytesIO object to hold the ZIP data
-                    buffer = io.BytesIO()
-
-                    # Create a ZIP archive in memory
-                    with ZipFile(buffer, "w") as archive:
-                        for i, array in enumerate(all_keys):
-                            # Create a BytesIO object to hold the CSV data
-                            csv_buffer = io.StringIO()
-                            np.savetxt(csv_buffer, array, fmt='%d')
-                            csv_buffer.seek(0)
-                            archive.writestr(names[i]+'.csv', csv_buffer.getvalue())
-                            csv_buffer.close()
-
-                    # Move the buffer's position back to the beginning
-                    buffer.seek(0)
-                    return buffer
-
-                
                 buffer = create_zip_from_arrays(all_keys,names)
-                st.download_button("Download ZIP", buffer.getvalue(),file_name = 'all_key.zip')
+                st.download_button("Download all Keys", buffer.getvalue(),file_name = 'all_keys.zip')
                 buffer.close()

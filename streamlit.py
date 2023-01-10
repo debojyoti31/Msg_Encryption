@@ -1,6 +1,7 @@
 import numpy as np
 import streamlit as st
 import io
+from io import StringIO
 
 def text_to_matrix(text):
   # Split the text into a list of words
@@ -71,7 +72,7 @@ with st.container():
             input_text = st.text_area('**Text to Encode**', '''Shhh! don't read it!''')
           if input_option == 'Upload txt File':
             uploaded_text = st.file_uploader("Upload txt file Here")
-            input_text =  uploaded_text.read()
+            input_text = StringIO(uploaded_text.getvalue().decode("utf-8"))
 
           input_text += ' -- Created By DM31'
             

@@ -79,7 +79,7 @@ with st.container():
                     buffer.seek(0)
                     return buffer
 
-                if st.button('Download ZIP'):
-                    buffer = create_zip_from_arrays(all_keys,names)
-                    st.download_button("Download ZIP", buffer.getvalue())
-                    buffer.close()
+                
+                buffer = create_zip_from_arrays(all_keys,names)
+                st.download_button("Download ZIP", buffer.getvalue())
+                buffer.close()

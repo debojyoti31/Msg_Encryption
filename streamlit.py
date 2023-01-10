@@ -106,15 +106,14 @@ with st.container():
         
         if option == 'Decode':
 
-          uploaded_msg = st.file_uploader("Upload Encoded Msg Here")
-          uploaded_key = st.file_uploader("Upload the key Here")
-          if st.button('Decode'):
-            key = np.genfromtxt(uploaded_key)
-            msg = np.genfromtxt(uploaded_msg)
+            uploaded_msg = st.file_uploader("Upload Encoded Msg Here")
+            uploaded_key = st.file_uploader("Upload the key Here")
             
 
             output_option = st.radio('**Select Output Type**',('Download txt File','Show Text'))
             if output_option == 'Download txt File':
+              key = np.genfromtxt(uploaded_key)
+              msg = np.genfromtxt(uploaded_msg)
               try:    
                 decoded = decode(msg, key)
               except:
@@ -126,6 +125,8 @@ with st.container():
             mime='text/plane',
             )
             if output_option == 'Show Text':
+              key = np.genfromtxt(uploaded_key)
+              msg = np.genfromtxt(uploaded_msg)
               try:    
                 decoded = decode(msg, key)
               except:

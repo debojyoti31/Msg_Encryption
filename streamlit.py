@@ -108,29 +108,31 @@ with st.container():
 
             uploaded_msg = st.file_uploader("Upload Encoded Msg Here")
             uploaded_key = st.file_uploader("Upload the key Here")
+
+            if (uploaded_key and uploaded_msg) is not None:
             
 
-            output_option = st.radio('**Select Output Type**',('Download txt File','Show Text'))
-            if output_option == 'Download txt File':
-              key = np.genfromtxt(uploaded_key)
-              msg = np.genfromtxt(uploaded_msg)
-              try:    
-                decoded = decode(msg, key)
-              except:
-                st.write('Error! Check Key Shape')
-              st.download_button(
-            label="Download decoded msg as txt",
-            data=decoded,
-            file_name='decoded_msg.txt',
-            mime='text/plane',
-            )
-            if output_option == 'Show Text':
-              key = np.genfromtxt(uploaded_key)
-              msg = np.genfromtxt(uploaded_msg)
-              try:    
-                decoded = decode(msg, key)
-              except:
-                st.write('Error! Check Key Shape')
-              if st.button('Show Text'):  
-                with st.container():
-                  st.write(decoded)
+              output_option = st.radio('**Select Output Type**',('Download txt File','Show Text'))
+              if output_option == 'Download txt File':
+                key = np.genfromtxt(uploaded_key)
+                msg = np.genfromtxt(uploaded_msg)
+                try:    
+                  decoded = decode(msg, key)
+                except:
+                  st.write('Error! Check Key Shape')
+                st.download_button(
+              label="Download decoded msg as txt",
+              data=decoded,
+              file_name='decoded_msg.txt',
+              mime='text/plane',
+              )
+              if output_option == 'Show Text':
+                key = np.genfromtxt(uploaded_key)
+                msg = np.genfromtxt(uploaded_msg)
+                try:    
+                  decoded = decode(msg, key)
+                except:
+                  st.write('Error! Check Key Shape')
+                if st.button('Show Text'):  
+                  with st.container():
+                    st.write(decoded)

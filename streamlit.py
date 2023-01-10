@@ -112,7 +112,7 @@ with st.container():
             if (uploaded_key and uploaded_msg) is not None:
             
 
-              output_option = st.radio('**Select Output Type**',('Download txt File','Show Text'))
+              output_option = st.radio('**Select Output Type**',('Show Text','Download txt File'))
               if output_option == 'Download txt File':
                 key = np.genfromtxt(uploaded_key)
                 msg = np.genfromtxt(uploaded_msg)
@@ -135,4 +135,5 @@ with st.container():
                   st.write('Error! Check Key Shape')
                 if st.button('Show Text'):  
                   with st.container():
+                    st.write('---')
                     st.write(decoded)

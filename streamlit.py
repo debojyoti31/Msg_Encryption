@@ -125,5 +125,4 @@ with st.container():
             mime='text/plane',
             )
             if output_option == 'Show Text':
-              with st.container():
                 st.write(decoded)

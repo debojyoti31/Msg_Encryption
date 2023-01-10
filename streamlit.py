@@ -111,10 +111,10 @@ with st.container():
         if option == 'Decode':
 
             uploaded_msg = st.file_uploader("Upload Encoded Msg Here")
+            if uploaded_msg is not None:
+                if st.button('Check Key Shape'):
+                    st.write('Key shape should be',np.genfromtxt(uploaded_msg).shape[1])
             uploaded_key = st.file_uploader("Upload the key Here")
-
-            if st.button('Check Key Shape'):
-                st.write('Key shape should be',np.genfromtxt(uploaded_msg).shape[1])
 
             if (uploaded_key and uploaded_msg) is not None:
             

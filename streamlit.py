@@ -64,25 +64,33 @@ with st.container():
         option = st.radio('**Select Operation Type**',('Encode', 'Decode'))
         
         if option == 'Encode':
+
+
+          input_option = st.radio('**Select Input Type**',('Write Msg', 'Upload txt File'))
+          if input_option == 'Write Msg':
             input_text = st.text_area('**Text to Encode**', '''Shhh! don't read it!''')
-            input_text += ' -- Created By DM31'
+          if input_option == 'Upload txt File':
+            uploaded_text = st.file_uploader("Upload txt file Here")
+            input_text = np.genfromtxt(uploaded_text)
+
+          input_text += ' -- Created By DM31'
             
-            matrix_text= text_to_matrix(input_text)
+          matrix_text= text_to_matrix(input_text)
             
-            if st.button('Check Key Shape'):
-              st.write('Key shape should be',matrix_text.shape[1])
-            st.write("[Use WebApp to Generate Key](https://debojyoti31-msg-encryption-key.streamlit.app/)")
-            uploaded_key = st.file_uploader("Upload Key Here")  
+          if st.button('Check Key Shape'):
+            st.write('Key shape should be',matrix_text.shape[1])
+          st.write("[Use WebApp to Generate Key](https://debojyoti31-msg-encryption-key.streamlit.app/)")
+          uploaded_key = st.file_uploader("Upload Key Here")  
             
-            if st.button('Encode'):
-              key = np.genfromtxt(uploaded_key)
+          if st.button('Encode'):
+            key = np.genfromtxt(uploaded_key)
               
-              try:   
-                encoded_msg = encode(matrix_text, key)
-              except:
-                st.write('Error! Check Key Shape')
+            try:   
+              encoded_msg = encode(matrix_text, key)
+            except:
+              st.write('Error! Check Key Shape')
               
-              with io.BytesIO() as buffer:
+            with io.BytesIO() as buffer:
                 np.savetxt(buffer, encoded_msg)
                 st.download_button(
                 label="Download encoded msg as CSV",
@@ -112,5 +120,3 @@ with st.container():
             file_name='decoded_msg.txt',
             mime='text/plane',
             )
-
-

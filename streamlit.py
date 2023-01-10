@@ -86,11 +86,12 @@ with st.container():
             
           if st.button('Encode'):
             key = np.genfromtxt(uploaded_key)
-              
-            try:   
-              encoded_msg = encode(matrix_text, key)
-            except:
-              st.write('Error! Check Key Shape')
+
+            with st.spinner('encoding....'):  
+              try:   
+                encoded_msg = encode(matrix_text, key)
+              except:
+                st.write('Error! Check Key Shape')
               
             with io.BytesIO() as buffer:
                 np.savetxt(buffer, encoded_msg)
@@ -116,10 +117,11 @@ with st.container():
               if output_option == 'Download txt File':
                 key = np.genfromtxt(uploaded_key)
                 msg = np.genfromtxt(uploaded_msg)
-                try:    
-                  decoded = decode(msg, key)
-                except:
-                  st.write('Error! Check Key Shape')
+                with st.spinner('decoding....'):
+                  try:    
+                    decoded = decode(msg, key)
+                  except:
+                    st.write('Error! Check Key Shape')
                 st.download_button(
               label="Download decoded msg as txt",
               data=decoded,
@@ -129,10 +131,11 @@ with st.container():
               if output_option == 'Show Text':
                 key = np.genfromtxt(uploaded_key)
                 msg = np.genfromtxt(uploaded_msg)
-                try:    
-                  decoded = decode(msg, key)
-                except:
-                  st.write('Error! Check Key Shape')
+                with st.spinner('decoding....'):
+                  try:    
+                    decoded = decode(msg, key)
+                  except:
+                    st.write('Error! Check Key Shape')
                 if st.button('Show Text'):  
                   with st.container():
                     st.write('---')

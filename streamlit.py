@@ -68,7 +68,7 @@ with st.container():
 
           input_option = st.radio('**Select Input Type**',('Write Msg', 'Upload txt File'))
           if input_option == 'Write Msg':
-            input_text = st.text_area('**Text to Encode**', '''Shhh! don't read it!''')
+            input_text = st.text_area('**Text to Encode**', '''The wind is rising! ... We must try to live!''')
           if input_option == 'Upload txt File':
             uploaded_text = st.file_uploader("Upload txt file Here")
             input_text = ''

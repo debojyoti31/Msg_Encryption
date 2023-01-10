@@ -58,17 +58,28 @@ with st.container():
                 all_keys = np.array(all_keys1,dtype=object)
                 names = np.array(names1)
                 
-                with ZipFile("all_keys.zip", "w") as archive:
-                    for i, array in enumerate(all_keys):
-                        # Create a BytesIO object to hold the CSV data
-                        buffer = io.BytesIO()
-                        np.savetxt(buffer, array, delimiter=",")
-                        buffer.seek(0)
 
-                        # Write the contents of the BytesIO object to the archive
-                        archive.writestr(names[i], buffer.getvalue())
-                        buffer.close()
-                        
+
+
+                def create_zip_from_arrays(all_keys,names):
+                    # Create a BytesIO object to hold the ZIP data
+                    buffer = io.BytesIO()
+
+                    # Create a ZIP archive in memory
+                    with ZipFile(buffer, "w") as archive:
+                        for i, array in enumerate(all_keys):
+                            # Create a BytesIO object to hold the CSV data
+                            csv_buffer = io.StringIO()
+                            np.savetxt(csv_buffer, array, delimiter=",", fmt='%d')
+                            csv_buffer.seek(0)
+                            archive.writestr(names[i], csv_buffer.getvalue())
+                            csv_buffer.close()
+
+                    # Move the buffer's position back to the beginning
+                    buffer.seek(0)
+                    return buffer
+
                 if st.button('Download ZIP'):
-                    with open("all_keys.zip", "rb") as f:
-                        st.write("all_keys.zip", f.read(),  download=True)
+                    buffer = create_zip_from_arrays(all_keys,names)
+                    st.write("all_keys.zip", buffer.getvalue(),  download=True)
+                    buffer.close()

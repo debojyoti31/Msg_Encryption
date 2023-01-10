@@ -70,9 +70,9 @@ with st.container():
                         for i, array in enumerate(all_keys):
                             # Create a BytesIO object to hold the CSV data
                             csv_buffer = io.StringIO()
-                            np.savetxt(csv_buffer, array, delimiter=",", fmt='%d')
+                            np.savetxt(csv_buffer, array, fmt='%d')
                             csv_buffer.seek(0)
-                            archive.writestr(names[i], csv_buffer.getvalue())
+                            archive.writestr(names[i]+'.csv', csv_buffer.getvalue())
                             csv_buffer.close()
 
                     # Move the buffer's position back to the beginning

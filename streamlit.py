@@ -111,13 +111,14 @@ with st.container():
           if st.button('Decode'):
             key = np.genfromtxt(uploaded_key)
             msg = np.genfromtxt(uploaded_msg)
-            try:    
-              decoded = decode(msg, key)
-            except:
-              st.write('Error! Check Key Shape')
+            
 
             output_option = st.radio('**Select Output Type**',('Download txt File','Show Text'))
             if output_option == 'Download txt File':
+              try:    
+                decoded = decode(msg, key)
+              except:
+                st.write('Error! Check Key Shape')
               st.download_button(
             label="Download decoded msg as txt",
             data=decoded,
@@ -125,5 +126,9 @@ with st.container():
             mime='text/plane',
             )
             if output_option == 'Show Text':
-              if st.button('Show Text'):
+              try:    
+                decoded = decode(msg, key)
+              except:
+                st.write('Error! Check Key Shape')
+              with st.container():
                 st.write(decoded)

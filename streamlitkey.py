@@ -69,4 +69,6 @@ with st.container():
                         archive.writestr(names[i], buffer.getvalue())
                         buffer.close()
 
-            st.download_button("Download ZIP", "arrays.zip")
+            if st.button('Download ZIP'):
+                with open("arrays.zip", "rb") as f:
+                    st.write("arrays.zip", f.read(),  download=True)

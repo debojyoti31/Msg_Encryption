@@ -54,8 +54,8 @@ with st.container():
                     all_keys1.append(generate_key(shape, 1, 10))
                     names1.append(str(day)+'_'+str(shape))
 
-            all_keys = np.array(all_keys1)
-            names = np.array(names1,dtype=object)
+            all_keys = np.array(all_keys1,dtype=object)
+            names = np.array(names1)
             
             with ZipFile("all_keys.zip", "w") as archive:
                 for i, array in enumerate(all_keys):

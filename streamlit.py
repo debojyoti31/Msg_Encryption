@@ -72,7 +72,7 @@ with st.container():
             input_text = st.text_area('**Text to Encode**', '''Shhh! don't read it!''')
           if input_option == 'Upload txt File':
             uploaded_text = st.file_uploader("Upload txt file Here")
-            input_text = StringIO(uploaded_text.getvalue().decode("utf-8"))
+            input_text = StringIO(uploaded_text.getvalue().decode("utf-8")).read()
 
           input_text += ' -- Created By DM31'
             

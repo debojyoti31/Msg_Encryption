@@ -67,7 +67,6 @@ with st.container():
                     # Write the contents of the BytesIO object to the archive
                     archive.writestr(names[i], buffer.getvalue())
                     buffer.close()
-            st.download_button("Download ZIP", "arrays.zip")
             st.download_button(
                 label="Download ZIP",
                 data = buffer, # Download buffer

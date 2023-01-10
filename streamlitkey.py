@@ -68,3 +68,9 @@ with st.container():
                     archive.writestr(names[i], buffer.getvalue())
                     buffer.close()
             st.download_button("Download ZIP", "arrays.zip")
+            st.download_button(
+                label="Download ZIP",
+                data = buffer, # Download buffer
+                file_name = 'arrays.zip',
+                mime='text/zip'
+                    )

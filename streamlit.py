@@ -76,7 +76,7 @@ with st.container():
             if uploaded_text is not None:
               input_text = StringIO(uploaded_text.getvalue().decode("utf-8")).read()
 
-          input_text += datetime.now().strftime(" %d%m%y %H:%M")
+          input_text += datetime.now().strftime("-- %d%m%y %H:%M")
             
           matrix_text= text_to_matrix(input_text)
             
